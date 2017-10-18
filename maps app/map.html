@@ -37,6 +37,7 @@
             center: {lat: 40.7413549, lng: -73.9980244},
             zoom: 13
         });
+        // this will display only one location with marker and infowindow anchored to marker
         // putting marker on location
         var tribeca= {lat: 40.719526, lng: -74.0089934};
         var marker= new google.maps.Marker({
@@ -44,9 +45,11 @@
             map: map,
             title: 'First Marker!'
         });
+        // putting infowindow on marker
         var infoWindow=new google.maps.InfoWindow({
             content: "Do u ever feel like an InfoWindow, floatingthrouh the wind,"+" ready to start again?"
         });
+        // adding event listener for displaying infowindow when clicked on marker
         marker.addListener("click",function(){
             infoWindow.open(map,marker);
         });
