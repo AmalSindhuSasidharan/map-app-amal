@@ -191,6 +191,14 @@
           styles: styles,
           mapTypeControl: false
         });
+        // This autocomplete is for use in the search within time entry box.
+        var timeAutocomplete = new google.maps.places.Autocomplete(
+            document.getElementById('search-within-time-text'));
+        // This autocomplete is for use in the geocoder entry box.
+        var zoomAutocomplete = new google.maps.places.Autocomplete(
+            document.getElementById('zoom-to-area-text'));
+        //Bias the boundaries within the map for the zoom to area text.
+        zoomAutocomplete.bindTo('bounds', map);
         // These are the real estate listings that will be shown to the user.
         // Normally we'd have these in a database instead.
         var locations = [
@@ -456,7 +464,7 @@
           var results = response.rows[i].elements;
           for (var j = 0; j < results.length; j++) {
             var element = results[j];
-            if (element.status === "OK") {
+              if (element.status === "OK") {
               // The distance is returned in feet, but the TEXT is in miles. If we wanted to switch
               // the function to show markers within a user-entered DISTANCE, we would need the
               // value for distance, but for now we only need the text.
@@ -527,7 +535,7 @@
 
     <script async defer
         src=
-        "https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&key=AIzaSyDiKFNMFScgAJmrCx5mX8r4WMHMzelMa00&v=3&callback=initMap">
+        "https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing&key=MYAPIKEY&v=3&callback=initMap">
     </script>
 
   </body>
